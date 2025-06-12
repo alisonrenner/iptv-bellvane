@@ -1,38 +1,24 @@
 import json
+import os
 
-# Arquivos de entrada
-ARQUIVO_ORIGINAL = "canais.json"
-ARQUIVO_TEMP = "canais_temp.json"
-ARQUIVO_SAIDA = "canais_atualizado.json"
+def merge_canais(temp_path, final_path):
+    with open(temp_path, 'r', encoding='utf-8') as f:
+        canais_temp = json.load(f)
+    with open(final_path, 'r', encoding='utf-8') as f:
+        canais = json.load(f)
 
-def carregar_json(caminho):
-    try:
-        with open(caminho, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except:
-        return {}
-
-def salvar_json(dados, caminho):
-    with open(caminho, "w", encoding="utf-8") as f:
-        json.dump(dados, f, indent=2, ensure_ascii=False)
-
-def merge_canais(orig, novo):
-    resultado = orig.copy()
-    for canal, links in novo.items():
-        if canal in resultado:
-            # Adiciona apenas os links que ainda não estão na lista
-            for link in links:
-                if link not in resultado[canal]:
-                    resultado[canal].append(link)
+    for canal_temp in canais_temp:
+        nome_temp = canal_temp.get("nome", "").lower()
+        existente = next((c for c in canais if c.get("nome", "").lower() == nome_temp), None)
+        if existente:
+            links_existentes = {l["url"] for l in existente.get("links", [])}
+            novos_links = [l for l in canal_temp.get("links", []) if l["url"] not in links_existentes]
+            existente["links"].extend(novos_links)
         else:
-            resultado[canal] = links
-    return resultado
+            canais.append(canal_temp)
+
+    with open(final_path, 'w', encoding='utf-8') as f:
+        json.dump(canais, f, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
-    canais_originais = carregar_json(ARQUIVO_ORIGINAL)
-    canais_novos = carregar_json(ARQUIVO_TEMP)
-
-    canais_merged = merge_canais(canais_originais, canais_novos)
-    salvar_json(canais_merged, ARQUIVO_SAIDA)
-
-    print(f"Merged com sucesso! Arquivo salvo como: {ARQUIVO_SAIDA}")
+    merge_canais("canais_temp.json", "canais.json")

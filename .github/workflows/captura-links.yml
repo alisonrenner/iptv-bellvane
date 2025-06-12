@@ -1,0 +1,32 @@
+name: Capturar links IPTV automaticamente
+
+on:
+  schedule:
+    - cron: "0 3 * * *"  # Roda todo dia às 3h da manhã (UTC)
+  workflow_dispatch:
+
+jobs:
+  capturar_links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Instalar dependências
+        run: pip install requests beautifulsoup4
+
+      - name: Rodar captura_links.py
+        run: python captura_links.py
+
+      - name: Commit e push se houver alterações
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add canais.json
+          git commit -m "Atualização automática dos links IPTV via captura_links.py" || echo "Sem mudanças"
+          git push

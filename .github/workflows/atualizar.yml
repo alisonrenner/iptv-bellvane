@@ -3,32 +3,31 @@ name: Atualizar lista IPTV
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 */6 * * *'  # Executa a cada 6 horas
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do repositório
-      uses: actions/checkout@v3
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: Instalar dependências
-      run: pip install -r requirements.txt
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
 
-    - name: Executar script
-      run: python atualizar.py
+      - name: Executar script
+        run: python gerar_m3u.py
 
-    - name: Commit e Push
-      run: |
-        git config --global user.email "actions@github.com"
-        git config --global user.name "GitHub Actions"
-        git pull origin main --rebase
-        git add .
-        git commit -m "Atualização automática" || echo "Nada para commitar"
-        git push
+      - name: Commit e Push
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add lista.m3u
+          git commit -m 'Atualização automática da lista IPTV'
+          git push

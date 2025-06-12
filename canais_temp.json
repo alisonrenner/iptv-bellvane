@@ -16,5 +16,8 @@
   },
   "CNNBRASIL": {
     "site_fonte": "https://embedtv-2.icu/cnnbrasil"
+  },
+  "CINEMAX": {
+    "site_fonte": "https://embedtv-2.icu/cinemax"
   }
 }

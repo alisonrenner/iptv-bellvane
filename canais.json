@@ -1,30 +1,103 @@
 {
-  "A&E": [
-    "https://aipapai.shop/fontes/embedtv/ae.m3u8",
-    "https://embmaxtv.online/aee/index.m3u8"
-  ],
-  "IN": [
-    "https://seulink-oficial-do-IN.m3u8",
-    "https://embmaxtv.online/in/index.m3u8"
-  ],
-  "Telecine Premium": [
-    "https://aipapai.shop/_temp/telecinepremium.m3u8",
-    "https://embmaxtv.online/tcpremium/index.m3u8"
-  ],
-  "History": [
-    "https://aipapai.shop/_temp/history.m3u8",
-    "https://embmaxtv.online/history/index.m3u8"
-  ],
-  "HBO Xtreme": [
-    "https://aipapai.shop/fontes/embedtv/hboxtreme.m3u8",
-    "https://embmaxtv.online/hboxtreme/index.m3u8"
-  ],
-  "CNN Brasil": [
-    "https://aipapai.shop/_temp/cnnbrasil.m3u8",
-    "https://embmaxtv.online/cnnbrasil/index.m3u8"
-  ],
-  "Megapix": [
-    "https://aipapai.shop/fontes/embedtv/megapix.m3u8",
-    "https://embmaxtv.online/megapix/index.m3u8"
-  ]
+  "IN": {
+    "site_fonte": "https://embedtv.digital/in",
+    "streams": [
+      {
+        "url": "https://cdn1.example.com/in/index.m3u8"
+      },
+      {
+        "url": "https://cdn2.example.com/in/index.m3u8"
+      }
+    ]
+  },
+  "AEE": {
+    "site_fonte": "https://embedtv-2.icu/aee",
+    "streams": [
+      {
+        "url": "https://embedtv-2.icu/aee (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  },
+  "HBOXTREME": {
+    "site_fonte": "https://embedtv-2.icu/hboxtreme",
+    "streams": [
+      {
+        "url": "https://embedtv-2.icu/hboxtreme (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  },
+  "HISTORY": {
+    "site_fonte": "https://embedtv-2.icu/history",
+    "streams": [
+      {
+        "url": "https://embedtv-2.icu/history (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  },
+  "MEGAPIX": {
+    "site_fonte": "https://embedtv-2.icu/megapix",
+    "streams": [
+      {
+        "url": "https://embedtv-2.icu/megapix (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  },
+  "TELECINEPREMIUM": {
+    "site_fonte": "https://embedtv-2.icu/telecinepremium",
+    "streams": [
+      {
+        "url": "https://embedtv-2.icu/telecinepremium (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  },
+  "CNNBRASIL": {
+    "site_fonte": "https://embedtv-2.icu/cnnbrasil",
+    "streams": [
+      {
+        "url": "https://embedtv-2.icu/cnnbrasil (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  },
+  "CINEMAX": {
+    "site_fonte": "https://embedtv-2.icu/cinemax",
+    "streams": [
+      {
+        "url": "https://embedtv-2.icu/cinemax (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  },
+  "GLOBOSP": {
+    "site_fonte": "https://embedcanaistv.com/globosp",
+    "streams": [
+      {
+        "url": "https://embedcanaistv.com/globosp (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  },
+  "AMC": {
+    "site_fonte": "https://embedcanaistv.com/amc",
+    "streams": [
+      {
+        "url": "https://embedcanaistv.com/amc (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  },
+  "AXN": {
+    "site_fonte": "https://embedcanaistv.com/axn",
+    "streams": [
+      {
+        "url": "https://embedcanaistv.com/axn (automático)",
+        "info": "captura automática pendente"
+      }
+    ]
+  }
 }

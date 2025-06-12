@@ -1,13 +1,1 @@
 #EXTM3U
-#EXTINF:-1 tvg-name="A&E" group-title="Canais",A&E
-https://aipapai.shop/fontes/embedtv/ae.m3u8
-#EXTINF:-1 tvg-name="Telecine Premium" group-title="Canais",Telecine Premium
-https://aipapai.shop/_temp/telecinepremium.m3u8
-#EXTINF:-1 tvg-name="History" group-title="Canais",History
-https://aipapai.shop/_temp/history.m3u8
-#EXTINF:-1 tvg-name="HBO Xtreme" group-title="Canais",HBO Xtreme
-https://aipapai.shop/fontes/embedtv/hboxtreme.m3u8
-#EXTINF:-1 tvg-name="CNN Brasil" group-title="Canais",CNN Brasil
-https://aipapai.shop/_temp/cnnbrasil.m3u8
-#EXTINF:-1 tvg-name="Megapix" group-title="Canais",Megapix
-https://aipapai.shop/fontes/embedtv/megapix.m3u8

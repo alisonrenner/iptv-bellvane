@@ -17,13 +17,15 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Executar script
-      run: python gerar_m3u_com_logos_CORRIGIDO.py
+      run: python gerar_m3u.py
 
-    - name: Commit e push se houver mudanças
+    - name: Commit e push se houver mudanças (forçado)
       run: |
         git config user.name "github-actions"
         git config user.email "actions@github.com"
-        git pull --rebase --autostash
         git add lista.m3u || true
         git commit -m "Atualização automática da lista IPTV" || true
-        git push || true
+        git fetch origin main
+        git reset --hard origin/main
+        git pull
+        git push origin HEAD:main --force || true

@@ -1,0 +1,20 @@
+{
+  "AEE": {
+    "site_fonte": "https://embedtv-2.icu/aee"
+  },
+  "HBOXTREME": {
+    "site_fonte": "https://embedtv-2.icu/hboxtreme"
+  },
+  "HISTORY": {
+    "site_fonte": "https://embedtv-2.icu/history"
+  },
+  "MEGAPIX": {
+    "site_fonte": "https://embedtv-2.icu/megapix"
+  },
+  "TELECINEPREMIUM": {
+    "site_fonte": "https://embedtv-2.icu/telecinepremium"
+  },
+  "CNNBRASIL": {
+    "site_fonte": "https://embedtv-2.icu/cnnbrasil"
+  }
+}

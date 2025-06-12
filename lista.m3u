@@ -1,1 +1,15 @@
 #EXTM3U
+# Atualizado em: 2025-06-12 08:31:06
+
+#EXTINF:-1,A&E
+https://aipapai.shop/fontes/embedtv/ae.m3u8
+#EXTINF:-1,Telecine Premium
+https://aipapai.shop/_temp/telecinepremium.m3u8
+#EXTINF:-1,History
+https://aipapai.shop/_temp/history.m3u8
+#EXTINF:-1,HBO Xtreme
+https://aipapai.shop/fontes/embedtv/hboxtreme.m3u8
+#EXTINF:-1,CNN Brasil
+https://aipapai.shop/_temp/cnnbrasil.m3u8
+#EXTINF:-1,Megapix
+https://aipapai.shop/fontes/embedtv/megapix.m3u8

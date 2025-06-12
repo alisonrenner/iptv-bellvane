@@ -1,0 +1,31 @@
+name: Converter fontes.txt em canais_temp.json
+
+on:
+  push:
+    paths:
+      - fontes.txt
+  workflow_dispatch:
+
+jobs:
+  converter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Rodar converter_fontes.py
+        run: |
+          python converter_fontes.py
+
+      - name: Commit e push do canais_temp.json gerado
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add canais_temp.json
+          git commit -m "Gerado canais_temp.json a partir do fontes.txt" || echo "Sem mudanças"
+          git push

@@ -22,5 +22,8 @@
   },
   "GLOBOSP": {
     "site_fonte": "https://embedcanaistv.com/globosp"
+  },
+  "AMC": {
+    "site_fonte": "https://embedcanaistv.com/amc"
   }
 }

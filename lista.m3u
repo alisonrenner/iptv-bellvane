@@ -1,15 +1,13 @@
 #EXTM3U
-#EXTINF:-1,A&E
+#EXTINF:-1 tvg-name="A&E" group-title="Canais",A&E
 https://aipapai.shop/fontes/embedtv/ae.m3u8
-#EXTINF:-1,IN
-https://seulink-oficial-do-IN.m3u8
-#EXTINF:-1,Telecine Premium
+#EXTINF:-1 tvg-name="Telecine Premium" group-title="Canais",Telecine Premium
 https://aipapai.shop/_temp/telecinepremium.m3u8
-#EXTINF:-1,History
-https://embmaxtv.online/history/index.m3u8
-#EXTINF:-1,HBO Xtreme
+#EXTINF:-1 tvg-name="History" group-title="Canais",History
+https://aipapai.shop/_temp/history.m3u8
+#EXTINF:-1 tvg-name="HBO Xtreme" group-title="Canais",HBO Xtreme
 https://aipapai.shop/fontes/embedtv/hboxtreme.m3u8
-#EXTINF:-1,CNN Brasil
-https://embmaxtv.online/cnnbrasil/index.m3u8
-#EXTINF:-1,Megapix
+#EXTINF:-1 tvg-name="CNN Brasil" group-title="Canais",CNN Brasil
+https://aipapai.shop/_temp/cnnbrasil.m3u8
+#EXTINF:-1 tvg-name="Megapix" group-title="Canais",Megapix
 https://aipapai.shop/fontes/embedtv/megapix.m3u8

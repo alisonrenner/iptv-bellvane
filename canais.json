@@ -47,5 +47,8 @@
   },
   "CINEMAX": {
     "site_fonte": "https://embedtv-2.icu/cinemax"
+  },
+  "GLOBOSP": {
+    "site_fonte": "https://embedcanaistv.com/globosp"
   }
 }

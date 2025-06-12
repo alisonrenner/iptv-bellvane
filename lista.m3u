@@ -1,15 +1,15 @@
 #EXTM3U
-# Atualizado em: 2025-06-12 08:32:05
+# Atualizado em: 2025-06-12 09:29:33
 
-#EXTINF:-1,A&E
+#EXTINF:-1 tvg-logo="https://iptv-org.github.io/epg/logos/br/a%26e.png",A&E
 https://aipapai.shop/fontes/embedtv/ae.m3u8
-#EXTINF:-1,Telecine Premium
+#EXTINF:-1 tvg-logo="https://iptv-org.github.io/epg/logos/br/telecine%20premium.png",Telecine Premium
 https://aipapai.shop/_temp/telecinepremium.m3u8
-#EXTINF:-1,History
+#EXTINF:-1 tvg-logo="https://iptv-org.github.io/epg/logos/br/history.png",History
 https://aipapai.shop/_temp/history.m3u8
-#EXTINF:-1,HBO Xtreme
+#EXTINF:-1 tvg-logo="https://iptv-org.github.io/epg/logos/br/hbo%20xtreme.png",HBO Xtreme
 https://aipapai.shop/fontes/embedtv/hboxtreme.m3u8
-#EXTINF:-1,CNN Brasil
+#EXTINF:-1 tvg-logo="https://iptv-org.github.io/epg/logos/br/cnn%20brasil.png",CNN Brasil
 https://aipapai.shop/_temp/cnnbrasil.m3u8
-#EXTINF:-1,Megapix
+#EXTINF:-1 tvg-logo="https://iptv-org.github.io/epg/logos/br/megapix.png",Megapix
 https://aipapai.shop/fontes/embedtv/megapix.m3u8

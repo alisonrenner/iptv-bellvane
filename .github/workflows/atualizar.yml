@@ -2,7 +2,7 @@ name: Atualizar lista IPTV
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -17,13 +17,13 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Executar script
-      run: python gerar_m3u.py
+      run: python gerar_m3u_com_logos_CORRIGIDO.py
 
     - name: Commit e push se houver mudanças
       run: |
         git config user.name "github-actions"
         git config user.email "actions@github.com"
-        git add lista.m3u
-        git commit -m "Atualização automática da lista IPTV" || echo "Sem mudanças"
-        git pull --rebase || echo "Nada para rebasear"
-        git push
+        git pull --rebase --autostash
+        git add lista.m3u || true
+        git commit -m "Atualização automática da lista IPTV" || true
+        git push || true

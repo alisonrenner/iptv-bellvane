@@ -25,5 +25,8 @@
   },
   "AMC": {
     "site_fonte": "https://embedcanaistv.com/amc"
+  },
+  "AXN": {
+    "site_fonte": "https://embedcanaistv.com/axn"
   }
 }

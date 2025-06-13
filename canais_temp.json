@@ -3,88 +3,84 @@
     "site_fonte": "https://embedtv-2.icu/aee",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://embedtv-2.icu/IE=edge"
-    ]
+    "links": []
+  },
+  "HBOXTREME": {
+    "site_fonte": "https://embedtv-2.icu/hboxtreme",
+    "grupo": "Sem Grupo",
+    "logo": "",
+    "links": []
   },
   "HISTORY": {
     "site_fonte": "https://embedtv-2.icu/history",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://embedtv-2.icu/IE=edge"
-    ]
+    "links": []
   },
   "MEGAPIX": {
     "site_fonte": "https://embedtv-2.icu/megapix",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://embedtv-2.icu/IE=edge"
-    ]
+    "links": []
   },
   "TELECINEPREMIUM": {
     "site_fonte": "https://embedtv-2.icu/telecinepremium",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://embedtv-2.icu/IE=edge"
-    ]
+    "links": []
   },
   "CNNBRASIL": {
     "site_fonte": "https://embedtv-2.icu/cnnbrasil",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://embedtv-2.icu/IE=edge"
-    ]
+    "links": []
   },
   "CINEMAX": {
     "site_fonte": "https://embedtv-2.icu/cinemax",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://embedtv-2.icu/IE=edge"
-    ]
+    "links": []
   },
   "GLOBOSP": {
     "site_fonte": "https://embedcanaistv.com/globosp",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://cdn.jsdelivr.net/npm/@clappr/player@0.4.7/dist/clappr.min.js"
-    ]
+    "links": []
   },
   "AMC": {
     "site_fonte": "https://embedcanaistv.com/amc",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://cdn.jsdelivr.net/npm/@clappr/player@0.4.7/dist/clappr.min.js"
-    ]
+    "links": []
   },
   "AXN": {
     "site_fonte": "https://embedcanaistv.com/axn",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://cdn.jsdelivr.net/npm/@clappr/player@0.4.7/dist/clappr.min.js"
-    ]
+    "links": []
   },
   "DISCOVERYCHANNEL": {
     "site_fonte": "https://embedtv-2.icu/discoverychannel",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://embedtv-2.icu/IE=edge"
-    ]
+    "links": []
   },
   "HBO2": {
     "site_fonte": "https://embedtv-2.icu/hbo2",
     "grupo": "Sem Grupo",
     "logo": "",
-    "links": [
-      "https://embedtv-2.icu/IE=edge"
-    ]
+    "links": []
+  },
+  "HBOMUNDI": {
+    "site_fonte": "https://embedtv-2.icu/hbomundi",
+    "grupo": "Sem Grupo",
+    "logo": "",
+    "links": []
+  },
+  "HBOPLUS": {
+    "site_fonte": "https://embedcanaistv.com/hboplus",
+    "grupo": "Sem Grupo",
+    "logo": "",
+    "links": []
   }
 }

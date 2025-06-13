@@ -21,29 +21,31 @@ for nome, valor in canais_temp_raw.items():
             "logo": "",
             "links": [valor]
         }
-    else:
+    elif isinstance(valor, dict) and "links" in valor:
         canais_temp[nome] = valor
 
 # Junta todos os links por nome
 resultado = defaultdict(list)
 
-# Adiciona os canais antigos
+# Adiciona canais do canais_base
 for nome, dados in canais_base.items():
-    resultado[nome].extend(dados["links"])
+    if isinstance(dados, dict) and "links" in dados:
+        resultado[nome].extend(dados["links"])
 
-# Adiciona os canais novos
+# Adiciona canais do canais_temp
 for nome, dados in canais_temp.items():
-    resultado[nome].extend(dados["links"])
+    if isinstance(dados, dict) and "links" in dados:
+        resultado[nome].extend(dados["links"])
 
-# Remove duplicados por canal
+# Remove duplicados e reconstrói saída final
 saida = {}
 for nome, links in resultado.items():
     saida[nome] = {
         "grupo": canais_temp.get(nome, canais_base.get(nome, {})).get("grupo", "Sem Grupo"),
         "logo": canais_temp.get(nome, canais_base.get(nome, {})).get("logo", ""),
-        "links": list(dict.fromkeys(links))  # remove duplicados mantendo ordem
+        "links": list(dict.fromkeys(links))
     }
 
-# Salva no canais.json
+# Salva resultado
 with open("canais.json", "w", encoding="utf-8") as f:
     json.dump(saida, f, indent=2, ensure_ascii=False)

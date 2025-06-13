@@ -1,77 +1,78 @@
 import requests
 from bs4 import BeautifulSoup
-import re
 import json
-import os
 
-def capturar_m3u8(url):
+
+def verificar_link_funcional(url):
     try:
         headers = {'User-Agent': 'Mozilla/5.0'}
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
-        html = response.text
+        res = requests.get(url, headers=headers, timeout=10, stream=True)
 
-        encontrados = re.findall(r'https?://[^\s\'"]+\.m3u8[^\s\'"]*', html)
-        if encontrados:
-            return encontrados[0]
-
-        soup = BeautifulSoup(html, 'html.parser')
-        iframes = soup.find_all('iframe')
-        for iframe in iframes:
-            src = iframe.get('src')
-            if src:
-                iframe_url = requests.compat.urljoin(url, src)
-                resp_iframe = requests.get(iframe_url, headers=headers, timeout=10)
-                if '.m3u8' in resp_iframe.text:
-                    m3u8_links = re.findall(r'https?://[^\s\'"]+\.m3u8[^\s\'"]*', resp_iframe.text)
-                    if m3u8_links:
-                        return m3u8_links[0]
-
-        scripts = soup.find_all("script")
-        for script in scripts:
-            if script.string and ".m3u8" in script.string:
-                m3u8_js = re.findall(r'https?://[^\s\'"]+\.m3u8[^\s\'"]*', script.string)
-                if m3u8_js:
-                    return m3u8_js[0]
-
-        return None
-    except Exception as e:
-        print(f"[ERRO] {url} -> {e}")
-        return None
-
-def extrair_nome_canal(url):
-    base = url.split("/")[-1]
-    nome = re.sub(r'\.php|\.html|\.htm', '', base)
-    return nome.upper().strip()
-
-def main():
-    if not os.path.exists("fontes.txt"):
-        print("Arquivo fontes.txt não encontrado.")
-        return
-
-    with open("fontes.txt", "r", encoding="utf-8") as f:
-        links = [linha.strip() for linha in f if linha.strip()]
-
-    canais = {}
-
-    for url in links:
-        nome = extrair_nome_canal(url)
-        print(f"[+] Processando: {nome} -> {url}")
-        link_m3u8 = capturar_m3u8(url)
-        if link_m3u8:
-            canais[nome] = {
-                "site_fonte": url,
-                "grupo": "Sem Grupo",
-                "logo": "",
-                "links": [link_m3u8]
-            }
-            print(f"  ✔ Capturado: {link_m3u8}")
+        if res.status_code == 200 and int(res.headers.get('Content-Length', 1)) > 0:
+            print(f"✅ Link funcional: {url}")
+            return True
         else:
-            print(f"  ✘ Nenhum link encontrado.")
+            print(f"❌ Link não funcional (Status: {res.status_code}): {url}")
+            return False
+    except Exception as e:
+        print(f"❌ Erro verificando {url}: {e}")
+        return False
 
-    with open("canais_temp.json", "w", encoding="utf-8") as f:
-        json.dump(canais, f, indent=2, ensure_ascii=False)
-        print(f"[✔] canais_temp.json atualizado com {len(canais)} canais.")
+
+def extrair_links(site_url):
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        res = requests.get(site_url, headers=headers, timeout=10)
+        res.raise_for_status()
+    except Exception as e:
+        print(f"❌ Erro acessando {site_url}: {e}")
+        return None
+
+    soup = BeautifulSoup(res.text, 'html.parser')
+    links = []
+
+    for tag in soup.find_all(['a', 'iframe', 'source', 'script', 'video', 'meta']):
+        link = tag.get('href') or tag.get('src') or tag.get('content')
+        if link:
+            if not link.startswith('http'):
+                link = requests.compat.urljoin(site_url, link)
+            links.append(link)
+
+    return links
+
+
+def processar_fontes(arquivo_fontes):
+    with open(arquivo_fontes, 'r') as f:
+        urls = f.read().splitlines()
+
+    resultado = {}
+
+    for url in urls:
+        nome = url.strip().split('/')[-1].split('.')[0].upper()
+        print(f"\n🔍 PROCESSANDO {nome}")
+
+        links_encontrados = extrair_links(url)
+
+        if links_encontrados:
+            for link in links_encontrados:
+                if verificar_link_funcional(link):
+                    resultado[nome] = {
+                        "site_fonte": url,
+                        "grupo": "Sem Grupo",
+                        "logo": "",
+                        "links": [link]
+                    }
+                    print(f"✅ LINK SALVO: {link}")
+                    break
+            else:
+                print(f"❌ Nenhum link funcional encontrado para {nome}")
+        else:
+            print(f"❌ Nenhum link encontrado em {url}")
+
+    with open('canais_temp.json', 'w', encoding='utf-8') as f:
+        json.dump(resultado, f, indent=2, ensure_ascii=False)
+    print("\n✅ canais_temp.json GERADO COM SUCESSO!")
+
 
 if __name__ == "__main__":
-    main()
+    processar_fontes('fontes.txt')

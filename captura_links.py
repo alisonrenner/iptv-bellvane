@@ -1,23 +1,20 @@
-
 import requests
 from bs4 import BeautifulSoup
 import re
+import json
+import os
 
 def capturar_m3u8(url):
     try:
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-        }
+        headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
         html = response.text
 
-        # Tenta encontrar diretamente .m3u8 no HTML
         encontrados = re.findall(r'https?://[^\s\'"]+\.m3u8[^\s\'"]*', html)
         if encontrados:
             return encontrados[0]
 
-        # Busca por <iframe src=""> e tenta recursivamente
         soup = BeautifulSoup(html, 'html.parser')
         iframes = soup.find_all('iframe')
         for iframe in iframes:
@@ -30,7 +27,6 @@ def capturar_m3u8(url):
                     if m3u8_links:
                         return m3u8_links[0]
 
-        # Busca links m3u8 dentro de scripts JavaScript
         scripts = soup.find_all("script")
         for script in scripts:
             if script.string and ".m3u8" in script.string:
@@ -42,3 +38,40 @@ def capturar_m3u8(url):
     except Exception as e:
         print(f"[ERRO] {url} -> {e}")
         return None
+
+def extrair_nome_canal(url):
+    base = url.split("/")[-1]
+    nome = re.sub(r'\.php|\.html|\.htm', '', base)
+    return nome.upper().strip()
+
+def main():
+    if not os.path.exists("fontes.txt"):
+        print("Arquivo fontes.txt não encontrado.")
+        return
+
+    with open("fontes.txt", "r", encoding="utf-8") as f:
+        links = [linha.strip() for linha in f if linha.strip()]
+
+    canais = {}
+
+    for url in links:
+        nome = extrair_nome_canal(url)
+        print(f"[+] Processando: {nome} -> {url}")
+        link_m3u8 = capturar_m3u8(url)
+        if link_m3u8:
+            canais[nome] = {
+                "site_fonte": url,
+                "grupo": "Sem Grupo",
+                "logo": "",
+                "links": [link_m3u8]
+            }
+            print(f"  ✔ Capturado: {link_m3u8}")
+        else:
+            print(f"  ✘ Nenhum link encontrado.")
+
+    with open("canais_temp.json", "w", encoding="utf-8") as f:
+        json.dump(canais, f, indent=2, ensure_ascii=False)
+        print(f"[✔] canais_temp.json atualizado com {len(canais)} canais.")
+
+if __name__ == "__main__":
+    main()

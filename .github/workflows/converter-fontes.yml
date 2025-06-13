@@ -20,8 +20,7 @@ jobs:
         python-version: '3.x'
 
     - name: Instalar dependências
-      run: |
-        pip install -r requirements.txt || pip install requests beautifulsoup4
+      run: pip install -r requirements.txt
 
     - name: Rodar captura_links.py
       run: python captura_links.py

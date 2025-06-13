@@ -3,7 +3,7 @@ name: Converter fontes.txt em canais_temp.json
 on:
   push:
     paths:
-      - fontes.txt
+      - 'fontes.txt'
   workflow_dispatch:
 
 jobs:
@@ -11,25 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar repositório
-        uses: actions/checkout@v4
+    - name: Clonar repositório
+      uses: actions/checkout@v3
 
-      - name: Configurar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
 
-      - name: Instalar dependências
-        run: pip install beautifulsoup4 requests
+    - name: Instalar dependências
+      run: |
+        pip install -r requirements.txt || pip install requests beautifulsoup4
 
-      - name: Rodar captura_links.py
-        run: python captura_links.py
+    - name: Rodar captura_links.py
+      run: python captura_links.py
 
-      - name: Commit e push do canais_temp.json gerado
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git pull origin main --rebase || true
-          git add canais_temp.json
-          git commit -m "Atualização automática do canais_temp.json" || echo "Sem mudanças"
-          git push
+    - name: Pull antes do push
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "actions@github.com"
+        git pull --rebase
+
+    - name: Commit e push do canais_temp.json gerado
+      run: |
+        git add canais_temp.json
+        git commit -m "Atualização automática do canais_temp.json"
+        git push

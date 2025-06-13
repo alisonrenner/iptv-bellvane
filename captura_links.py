@@ -7,21 +7,22 @@ def verificar_link_funcional(url):
     try:
         headers = {'User-Agent': 'Mozilla/5.0'}
         res = requests.get(url, headers=headers, timeout=10, stream=True)
-
         if res.status_code == 200 and int(res.headers.get('Content-Length', 1)) > 0:
-            print(f"Link funcional: {url}")
             return True
         else:
-            print(f"Link não funcional (Status: {res.status_code}): {url}")
             return False
-    except Exception as e:
-        print(f"Erro verificando {url}: {e}")
+    except:
         return False
 
 
-def link_parece_stream(link):
-    stream_keywords = ['.m3u8', '.mpd', '/live/', '/hls/', '/stream/', '.ts', '.flv']
-    return any(kw in link for kw in stream_keywords)
+def link_parece_stream_ao_vivo(link):
+    palavras_ao_vivo = ['.m3u8', '/live/', '/hls/', '/stream/', '/index.m3u8', '/playlist.m3u8']
+    palavras_de_videos_normais = ['.mp4', '.mov', '.avi', '.mkv', '.webm']
+
+    if any(p in link.lower() for p in palavras_de_videos_normais):
+        return False
+
+    return any(p in link.lower() for p in palavras_ao_vivo)
 
 
 def extrair_links(site_url):
@@ -29,8 +30,7 @@ def extrair_links(site_url):
         headers = {'User-Agent': 'Mozilla/5.0'}
         res = requests.get(site_url, headers=headers, timeout=10)
         res.raise_for_status()
-    except Exception as e:
-        print(f"Erro acessando {site_url}: {e}")
+    except:
         return []
 
     soup = BeautifulSoup(res.text, 'html.parser')
@@ -41,8 +41,7 @@ def extrair_links(site_url):
         if link:
             if not link.startswith('http'):
                 link = requests.compat.urljoin(site_url, link)
-
-            if link_parece_stream(link):
+            if link_parece_stream_ao_vivo(link):
                 links.append(link)
 
     return links
@@ -56,8 +55,6 @@ def processar_fontes(arquivo_fontes):
 
     for url in urls:
         nome = url.strip().split('/')[-1].split('.')[0].upper()
-        print(f"PROCESSANDO {nome}")
-
         links_encontrados = extrair_links(url)
 
         if links_encontrados:
@@ -69,16 +66,17 @@ def processar_fontes(arquivo_fontes):
                         "logo": "",
                         "links": [link]
                     }
-                    print(f"LINK SALVO: {link}")
                     break
-            else:
-                print(f"Nenhum link funcional encontrado para {nome}")
         else:
-            print(f"Nenhum link encontrado em {url}")
+            resultado[nome] = {
+                "site_fonte": url,
+                "grupo": "Sem Grupo",
+                "logo": "",
+                "links": []
+            }
 
     with open('canais_temp.json', 'w', encoding='utf-8') as f:
         json.dump(resultado, f, indent=2, ensure_ascii=False)
-    print("canais_temp.json GERADO COM SUCESSO")
 
 
 if __name__ == "__main__":

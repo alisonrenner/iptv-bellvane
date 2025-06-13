@@ -11,16 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clonar repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configurar Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Rodar converter_fontes.py
-        run: |
-          python converter_fontes.py
+      - name: Instalar dependências (opcional)
+        run: pip install beautifulsoup4 requests
+
+      - name: Rodar captura_links.py
+        run: python captura_links.py
 
       - name: Commit e push do canais_temp.json gerado
         run: |

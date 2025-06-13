@@ -1,1 +1,2 @@
-# Nenhuma dependência externa
+requests
+beautifulsoup4

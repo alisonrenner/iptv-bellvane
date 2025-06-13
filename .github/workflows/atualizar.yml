@@ -1,4 +1,4 @@
-name: Atualizar lista IPTV
+name: Atualizar lista.m3u
 
 on:
   push:
@@ -7,28 +7,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  gerar-lista:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Clonar repositório
-      uses: actions/checkout@v4
+      - name: Clonar repositório
+        uses: actions/checkout@v4
 
-    - name: Configurar Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-    - name: Instalar dependências (opcional)
-      run: pip install -r requirements.txt || true
+      - name: Instalar dependências
+        run: pip install -r requirements.txt || true
 
-    - name: Executar script de geração da lista
-      run: python gerar_m3u.py
+      - name: Rodar gerar_m3u.py
+        run: python gerar_m3u.py
 
-    - name: Commit e push se houver mudanças
-      run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "actions@github.com"
-        git add lista.m3u
-        git diff --cached --quiet || git commit -m "Atualização automática da lista.m3u"
-        git push
+      - name: Commit e push da lista.m3u
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git pull origin main --rebase || true
+          git add lista.m3u
+          git commit -m "Atualização automática da lista.m3u" || echo "Sem mudanças"
+          git push

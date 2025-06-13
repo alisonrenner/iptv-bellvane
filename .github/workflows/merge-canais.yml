@@ -9,6 +9,7 @@ on:
 jobs:
   merge:
     runs-on: ubuntu-latest
+
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v4
@@ -18,13 +19,14 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Rodar script de merge
+      - name: Rodar merge_canais_json.py
         run: python merge_canais_json.py
 
       - name: Commit e push do canais.json atualizado
         run: |
           git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.email "actions@github.com"
+          git pull origin main --rebase || true
           git add canais.json
-          git diff --cached --quiet || git commit -m "Merge automático do canais_temp.json no canais.json"
+          git commit -m "Atualização automática do canais.json" || echo "Sem mudanças"
           git push

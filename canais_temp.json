@@ -1,35 +1,26 @@
 {
-  "AEE": {
-    "site_fonte": "https://embedtv-2.icu/aee"
-  },
-  "HBOXTREME": {
-    "site_fonte": "https://embedtv-2.icu/hboxtreme"
-  },
-  "HISTORY": {
-    "site_fonte": "https://embedtv-2.icu/history"
-  },
-  "MEGAPIX": {
-    "site_fonte": "https://embedtv-2.icu/megapix"
-  },
-  "TELECINEPREMIUM": {
-    "site_fonte": "https://embedtv-2.icu/telecinepremium"
-  },
-  "CNNBRASIL": {
-    "site_fonte": "https://embedtv-2.icu/cnnbrasil"
-  },
-  "CINEMAX": {
-    "site_fonte": "https://embedtv-2.icu/cinemax"
-  },
   "GLOBOSP": {
-    "site_fonte": "https://embedcanaistv.com/globosp"
+    "site_fonte": "https://embedcanaistv.com/globosp",
+    "grupo": "Sem Grupo",
+    "logo": "",
+    "links": [
+      "https://embmaxtv.online/globosp/index.m3u8"
+    ]
   },
   "AMC": {
-    "site_fonte": "https://embedcanaistv.com/amc"
+    "site_fonte": "https://embedcanaistv.com/amc",
+    "grupo": "Sem Grupo",
+    "logo": "",
+    "links": [
+      "https://embmaxtv.online/amc/index.m3u8"
+    ]
   },
   "AXN": {
-    "site_fonte": "https://embedcanaistv.com/axn"
-  },
-  "DISCOVERYCHANNEL": {
-    "site_fonte": "https://embedtv-2.icu/discoverychannel"
+    "site_fonte": "https://embedcanaistv.com/axn",
+    "grupo": "Sem Grupo",
+    "logo": "",
+    "links": [
+      "https://embmaxtv.online/axn/index.m3u8"
+    ]
   }
 }

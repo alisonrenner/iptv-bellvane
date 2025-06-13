@@ -9,13 +9,13 @@ def verificar_link_funcional(url):
         res = requests.get(url, headers=headers, timeout=10, stream=True)
 
         if res.status_code == 200 and int(res.headers.get('Content-Length', 1)) > 0:
-            print(f"✅ Link funcional: {url}")
+            print(f"Link funcional: {url}")
             return True
         else:
-            print(f"❌ Link não funcional (Status: {res.status_code}): {url}")
+            print(f"Link não funcional (Status: {res.status_code}): {url}")
             return False
     except Exception as e:
-        print(f"❌ Erro verificando {url}: {e}")
+        print(f"Erro verificando {url}: {e}")
         return False
 
 
@@ -30,7 +30,7 @@ def extrair_links(site_url):
         res = requests.get(site_url, headers=headers, timeout=10)
         res.raise_for_status()
     except Exception as e:
-        print(f"❌ Erro acessando {site_url}: {e}")
+        print(f"Erro acessando {site_url}: {e}")
         return []
 
     soup = BeautifulSoup(res.text, 'html.parser')
@@ -56,7 +56,7 @@ def processar_fontes(arquivo_fontes):
 
     for url in urls:
         nome = url.strip().split('/')[-1].split('.')[0].upper()
-        print(f"\n🔍 PROCESSANDO {nome}")
+        print(f"PROCESSANDO {nome}")
 
         links_encontrados = extrair_links(url)
 
@@ -69,16 +69,16 @@ def processar_fontes(arquivo_fontes):
                         "logo": "",
                         "links": [link]
                     }
-                    print(f"✅ LINK SALVO: {link}")
+                    print(f"LINK SALVO: {link}")
                     break
             else:
-                print(f"❌ Nenhum link funcional encontrado para {nome}")
+                print(f"Nenhum link funcional encontrado para {nome}")
         else:
-            print(f"❌ Nenhum link encontrado em {url}")
+            print(f"Nenhum link encontrado em {url}")
 
     with open('canais_temp.json', 'w', encoding='utf-8') as f:
         json.dump(resultado, f, indent=2, ensure_ascii=False)
-    print("\n✅ canais_temp.json GERADO COM SUCESSO!")
+    print("canais_temp.json GERADO COM SUCESSO")
 
 
 if __name__ == "__main__":

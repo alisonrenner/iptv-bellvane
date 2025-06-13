@@ -19,6 +19,11 @@ def verificar_link_funcional(url):
         return False
 
 
+def link_parece_stream(link):
+    stream_keywords = ['.m3u8', '.mpd', '/live/', '/hls/', '/stream/', '.ts', '.flv']
+    return any(kw in link for kw in stream_keywords)
+
+
 def extrair_links(site_url):
     try:
         headers = {'User-Agent': 'Mozilla/5.0'}
@@ -26,17 +31,19 @@ def extrair_links(site_url):
         res.raise_for_status()
     except Exception as e:
         print(f"❌ Erro acessando {site_url}: {e}")
-        return None
+        return []
 
     soup = BeautifulSoup(res.text, 'html.parser')
     links = []
 
-    for tag in soup.find_all(['a', 'iframe', 'source', 'script', 'video', 'meta']):
-        link = tag.get('href') or tag.get('src') or tag.get('content')
+    for tag in soup.find_all(['a', 'iframe', 'source', 'video', 'script']):
+        link = tag.get('href') or tag.get('src')
         if link:
             if not link.startswith('http'):
                 link = requests.compat.urljoin(site_url, link)
-            links.append(link)
+
+            if link_parece_stream(link):
+                links.append(link)
 
     return links
 

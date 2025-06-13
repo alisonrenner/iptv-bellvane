@@ -4,8 +4,8 @@
     "grupo": "Sem Grupo",
     "logo": "",
     "links": [
-      "https://embmaxtv.online/globosp/index.m3u8",
-      "https://cdn.jsdelivr.net/npm/@clappr/player@0.4.7/dist/clappr.min.js"
+      "https://cdn.jsdelivr.net/npm/@clappr/player@0.4.7/dist/clappr.min.js",
+      "https://embmaxtv.online/globosp/index.m3u8"
     ]
   },
   "AMC": {
@@ -13,8 +13,8 @@
     "grupo": "Sem Grupo",
     "logo": "",
     "links": [
-      "https://cdn.jsdelivr.net/npm/@clappr/player@0.4.7/dist/clappr.min.js",
-      "https://embmaxtv.online/amc/index.m3u8"
+      "https://embmaxtv.online/amc/index.m3u8",
+      "https://cdn.jsdelivr.net/npm/@clappr/player@0.4.7/dist/clappr.min.js"
     ]
   },
   "AXN": {

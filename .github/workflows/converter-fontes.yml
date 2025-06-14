@@ -3,7 +3,7 @@ name: Converter fontes.txt em canais_temp.json
 on:
   push:
     paths:
-      - fontes.txt
+      - 'fontes.txt'
   workflow_dispatch:
 
 jobs:
@@ -17,22 +17,26 @@ jobs:
     - name: Instalar Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.x'
 
     - name: Instalar dependências
       run: pip install -r requirements.txt
 
     - name: Instalar navegadores do Playwright
-      run: python -m playwright install --with-deps
+      run: python -m playwright install
 
     - name: Rodar captura_links.py
       run: python captura_links.py
 
-    - name: Commit e push do canais_temp.json
+    - name: Resetar branch pra evitar conflito
+      run: |
+        git fetch origin
+        git reset --hard origin/main
+
+    - name: Commit e push do canais_temp.json gerado
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "actions@github.com"
-        git pull --rebase
         git add canais_temp.json
         git commit -m "Atualização automática do canais_temp.json"
         git push

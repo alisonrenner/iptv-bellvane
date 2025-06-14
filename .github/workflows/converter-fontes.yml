@@ -11,21 +11,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Clonar repositório
-      uses: actions/checkout@v3
+      - name: Set up job
+        uses: actions/checkout@v3
 
-    - name: Instalar Playwright
-      run: |
-        pip install playwright
-        playwright install
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: Rodar captura_links.py
-      run: python captura_links.py
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
 
-    - name: Commit e push do canais_temp.json gerado
-      run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "actions@github.com"
-        git add canais_temp.json
-        git commit -m "Atualização automática do canais_temp.json" || echo "Sem alterações para commit"
-        git push
+      - name: Instalar navegadores do Playwright
+        run: playwright install
+
+      - name: Rodar captura_links.py
+        run: python captura_links.py
+
+      - name: Pull antes do push
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git pull --rebase
+
+      - name: Commit e push do canais_temp.json gerado
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add canais_temp.json
+          git commit -m "Atualização automática do canais_temp.json" || echo "Nada para commitar"
+          git push

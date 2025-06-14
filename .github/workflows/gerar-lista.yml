@@ -1,0 +1,35 @@
+name: Gerar lista M3U IPTV
+
+on:
+  push:
+    paths:
+      - canais.json
+  workflow_dispatch:
+
+jobs:
+  gerar_m3u:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Instalar dependências
+      run: pip install -r requirements.txt
+
+    - name: Rodar gerar_m3u.py
+      run: python gerar_m3u.py
+
+    - name: Commit e push da lista.m3u
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "actions@github.com"
+        git pull --rebase
+        git add lista.m3u
+        git commit -m "Lista IPTV atualizada automaticamente"
+        git push

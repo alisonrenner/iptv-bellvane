@@ -1,39 +1,20 @@
 import json
+import os
 
-def merge_canais(arquivo_temp, arquivo_final):
-    try:
-        with open(arquivo_temp, "r", encoding="utf-8") as f:
-            canais_temp = json.load(f)
-    except Exception as e:
-        print(f"[ERRO] Não foi possível abrir {arquivo_temp}: {e}")
-        return
+if not os.path.exists('canais_temp.json'):
+    exit()
 
-    try:
-        with open(arquivo_final, "r", encoding="utf-8") as f:
-            canais_final = json.load(f)
-    except:
-        print("[INFO] Arquivo canais.json não encontrado ou vazio. Criando um novo.")
-        canais_final = {}
+with open('canais_temp.json', 'r', encoding='utf-8') as temp_file:
+    canais_temp = json.load(temp_file)
 
-    for nome, dados_temp in canais_temp.items():
-        print(f"[✔] Processando canal: {nome}")
-        
-        if nome not in canais_final:
-            canais_final[nome] = {
-                "site_fonte": dados_temp.get("site_fonte", ""),
-                "grupo": dados_temp.get("grupo", "Sem Grupo"),
-                "logo": dados_temp.get("logo", ""),
-                "links": []
-            }
+if os.path.exists('canais.json'):
+    with open('canais.json', 'r', encoding='utf-8') as canais_file:
+        canais = json.load(canais_file)
+else:
+    canais = {}
 
-        # Adiciona links novos sem duplicar
-        links_existentes = set(canais_final[nome].get("links", []))
-        novos_links = set(dados_temp.get("links", []))
-        canais_final[nome]["links"] = list(links_existentes.union(novos_links))
+for nome, dados in canais_temp.items():
+    canais[nome] = dados
 
-    with open(arquivo_final, "w", encoding="utf-8") as f:
-        json.dump(canais_final, f, indent=2, ensure_ascii=False)
-        print(f"[✔] Merge concluído! {arquivo_final} atualizado.")
-
-if __name__ == "__main__":
-    merge_canais("canais_temp.json", "canais.json")
+with open('canais.json', 'w', encoding='utf-8') as output_file:
+    json.dump(canais, output_file, indent=2, ensure_ascii=False)

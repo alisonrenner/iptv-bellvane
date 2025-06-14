@@ -1,84 +1,12 @@
 {
-  "AEE": {
-    "site_fonte": "https://embedtv-2.icu/aee",
+  "AE": {
+    "site_fonte": "https://embedtv-2.icu/ae",
     "grupo": "Sem Grupo",
     "logo": "",
     "links": []
   },
-  "HBOXTREME": {
-    "site_fonte": "https://embedtv-2.icu/hboxtreme",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "HISTORY": {
-    "site_fonte": "https://embedtv-2.icu/history",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "MEGAPIX": {
-    "site_fonte": "https://embedtv-2.icu/megapix",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "TELECINEPREMIUM": {
-    "site_fonte": "https://embedtv-2.icu/telecinepremium",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "CNNBRASIL": {
-    "site_fonte": "https://embedtv-2.icu/cnnbrasil",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "CINEMAX": {
-    "site_fonte": "https://embedtv-2.icu/cinemax",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "GLOBOSP": {
-    "site_fonte": "https://embedcanaistv.com/globosp",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "AMC": {
-    "site_fonte": "https://embedcanaistv.com/amc",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "AXN": {
-    "site_fonte": "https://embedcanaistv.com/axn",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "DISCOVERYCHANNEL": {
-    "site_fonte": "https://embedtv-2.icu/discoverychannel",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "HBO2": {
-    "site_fonte": "https://embedtv-2.icu/hbo2",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "HBOMUNDI": {
-    "site_fonte": "https://embedtv-2.icu/hbomundi",
-    "grupo": "Sem Grupo",
-    "logo": "",
-    "links": []
-  },
-  "HBOPLUS": {
-    "site_fonte": "https://embedcanaistv.com/hboplus",
+  "SPACE": {
+    "site_fonte": "https://embedtv-2.icu/space",
     "grupo": "Sem Grupo",
     "logo": "",
     "links": []

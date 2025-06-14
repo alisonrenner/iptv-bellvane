@@ -17,17 +17,15 @@ def capturar_links(url):
                 or "/playlist" in request.url
                 or "/index.m3u" in request.url
             ):
-                print(f"🎯 LINK ENCONTRADO: {request.url}")
                 links.append(request.url)
 
         page.on("request", handle_request)
 
         try:
-            print(f"🌐 Acessando: {url}")
             page.goto(url, timeout=60000)
-            page.wait_for_timeout(15000)  # Espera 15 segundos
-        except Exception as e:
-            print(f"❌ Erro ao acessar {url}: {e}")
+            page.wait_for_timeout(15000)
+        except Exception:
+            pass
 
         browser.close()
         return links
